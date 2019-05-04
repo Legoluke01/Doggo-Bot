@@ -24,6 +24,8 @@ module.exports.run = async (bot, message, args, func) => {
     .addField("Node Version", `${process.version}`)
     .setTimestamp()
     .setFooter(`My stats were requested by ${message.author.tag}` )
+    
+    message.channel.send(statsEmbed)
 }
 
 
