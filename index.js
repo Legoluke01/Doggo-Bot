@@ -18,22 +18,6 @@ bot.points = new Enmap({name: "points"});
 const Logging = require('./logging.js');
 bot.coins = new Enmap({name: "coins"});
 
-
-
-// fs.readdir('./cmdsfoldername', (err, folders)=>{
-//     if(err) console.log(err)
-//     for(const folder of folders){
-//         fs.readdir(`./cmdsfoldername/${folder}`, (err, files)=>{
-//             if(err) console.log(err)
-//             for(const file of files){
-//                 // set it to your collection here
-//             }
-//         });
-//     }
-// });
-
-
-
 fs.readdir("./commands/", (err, files) => {
   let folders = fs.readdirSync('./commands/');
   for(const folder of folders){
@@ -56,17 +40,6 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
 
-  // if(message.channel.topic.includes("<Doggo:DisabledCommands>")) return;
-
-  //     if(msg.content.includes("")){
-  //     if(msg.content.includes("")){
-  //     }
-  //     if(msg.content.includes("")){
-  //     }
-  //    msg.delete();
-  //    msg.reply("***bad words are disable in sever***:rage:") .then(xnxx => {xnxx.delete(5000)})
-  //   }
-
 
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
   if(!prefixes[message.guild.id]){
@@ -75,36 +48,7 @@ bot.on("message", async message => {
     };
   }
 
-//   if(message.channel.type === "dm") { 
-//     var args1 = message.content.split(" ").slice(0)
-//     var args1 = args.slice(0).join(" ") 
 
-//     if(message.content.startsWith(prefix)) return message.channel.send(":x: Please use commands in real server! :x:") 
-//     message.channel.send("This message has been send to the staff! :incoming_envelope:");
-//     if(message.content.startsWith(prefix)) return
-//     if(args1.length > 256) return message.reply("Your message content too many characters :/") 
-//     var embed = new Discord.RichEmbed()
-//         .setColor('RANDOM')
-//         .setTitle("New request in DM!")
-//         .addField(args1, "Send by: " + message.author.username + " with the ID: " + message.author.id)
-//     bot.guilds.get("551892387207708673").channels.get("572038764486983692").send(embed) 
-// }
-
-
-// if (message.content.startsWith(prefix + "reply")) {
-//     if (message.author.id !== "317098359116529666") return message.reply('You cannot use that!')
-//     var args2 = message.content.split(" ").slice(0)
-//     var Rargs = message.content.split(" ").slice(2).join(" ")
-//     var userID = args[1]
-//     if (isNaN(args2[1])) return message.reply("This is not an ID!") 
-//     var embed = new Discord.RichEmbed()
-//         .setColor('RANDOM')
-//         .setTitle("the staff answered you!")
-//         .setDescription(Rargs)
-//         .setFooter("this message was sent to you by: " + message.author.username + " !")
-//     bot.users.get(userID).send(embed)
-//     message.channel.send("Send!").catch(console.error) 
-// }
   if(message.channel.type === "dm") return;
   if(message.author.bot) return;
 
@@ -132,12 +76,7 @@ bot.on("message", async message => {
       }
     }
 
-  // let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-  // if(!prefixes[message.guild.id]){
-  //   prefixes[message.guild.id] = {
-  //     prefixes: botconfig.prefix
-  //   };
-  // }
+  
     if (message.content == "ping") {
       return message.channel.send("pong");
     }
@@ -183,33 +122,6 @@ bot.on("message", async message => {
   message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
   }
 
-  // let xpAdd = Math.floor(Math.random() * 7) + 8;
-  // console.log(xpAdd);
-  //
-  // if(!xp[message.author.id]){
-  //   xp[message.author.id] = {
-  //     xp: 0,
-  //     level: 1
-  //   };
-  // }
-  //
-  //
-  // let curxp = xp[message.author.id].xp;
-  // let curlvl = xp[message.author.id].level;
-  // let nxtLvl = xp[message.author.id].level * 300;
-  // xp[message.author.id].xp =  curxp + xpAdd;
-  // if(nxtLvl <= xp[message.author.id].xp){
-  //   xp[message.author.id].level = curlvl + 1;
-  //   let lvlup = new Discord.RichEmbed()
-  //   .setTitle("Level Up!")
-  //   .setColor(purple)
-  //   .addField("New Level", curlvl + 1);
-  //
-  //   message.channel.send(lvlup).then(msg => {msg.delete(5000)});
-  // }
-  // fs.writeFile("./xp.json", JSON.stringify(xp), (err) => {
-  //   if(err) console.log(err)
-  // });
   let prefix = prefixes[message.guild.id].prefixes;
   if(!message.content.startsWith(prefix)) return;
   if(cooldown.has(message.author.id)){
@@ -235,12 +147,12 @@ bot.on("message", async message => {
 
 });
 
-// bot.on('messageDelete', message => {
-//   Logging.logMessageDelete(message);
-// });
+bot.on('messageDelete', message => {
+Logging.logMessageDelete(message);
+});
 
-// bot.on('messageUpdate', (oldMessage, newMessage) => {
-//   Logging.logMessageUpdate(oldMessage, newMessage);
-// });
+bot.on('messageUpdate', (oldMessage, newMessage) => {
+Logging.logMessageUpdate(oldMessage, newMessage);
+});
 
 bot.login(tokenfile.token);
