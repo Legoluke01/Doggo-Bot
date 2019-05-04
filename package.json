@@ -1,0 +1,33 @@
+{
+  "name": "first-bot",
+  "version": "1.0.0",
+  "description": "My first discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dominick Sanchez",
+  "license": "ISC",
+  "dependencies": {
+    "animejs": "^3.0.1",
+    "animequote": "^1.1.1",
+    "better-sqlite-pool": "^0.2.2",
+    "birb": "^1.2.2",
+    "discord.js": "^11.4.2",
+    "enmap": "^4.8.2",
+    "fortnite": "^4.2.2",
+    "http": "0.0.0",
+    "kitsu": "^6.5.1",
+    "mathjs": "^5.5.0",
+    "moment": "^2.24.0",
+    "moment-duration-format": "^2.2.2",
+    "ms": "^2.1.1",
+    "nekos.life": "^2.0.4",
+    "node-fetch": "^2.3.0",
+    "quick.db": "^7.0.0-b22",
+    "request": "^2.88.0",
+    "superagent": "^4.1.0",
+    "urban": "^0.3.2",
+    "youtube-search": "^1.1.4"
+  }
+}
